@@ -151,6 +151,13 @@
   <ItemGroup>
     <Text Include="Readme.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BadGuy.h" />
+    <ClInclude Include="BadGuyMgr.h" />
+    <ClInclude Include="GoodGuy.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="MissileMgr.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

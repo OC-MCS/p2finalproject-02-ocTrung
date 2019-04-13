@@ -9,6 +9,10 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf; 
 
+#include "GoodGuy.h"
+#include "MissileMgr.h"
+#include "BadGuyMgr.h"
+
 //============================================================
 // YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
 //============================================================
@@ -18,22 +22,7 @@ using namespace sf;
 // the current position of the ship. 
 // x is horizontal, y is vertical. 
 // 0,0 is in the UPPER LEFT of the screen, y increases DOWN the screen
-void moveShip(Sprite& ship)
-{
-	const float DISTANCE = 5.0;
 
-	if (Keyboard::isKeyPressed(Keyboard::Left))
-	{
-		// left arrow is pressed: move our ship left 5 pixels
-		// 2nd parm is y direction. We don't want to move up/down, so it's zero.
-		ship.move(-DISTANCE, 0);
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
-		// right arrow is pressed: move our ship right 5 pixels
-		ship.move(DISTANCE, 0);
-	}
-}
 
 
 
@@ -41,6 +30,7 @@ int main()
 {
 	const int WINDOW_WIDTH = 800;
 	const int WINDOW_HEIGHT = 600;
+	bool isMissileInFlight = false;
 
 	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "aliens!");
 	// Limit the framerate to 60 frames per second
@@ -70,15 +60,21 @@ int main()
 	background.setScale(1.5, 1.5);
 
 	// create sprite and texture it
-	Sprite ship;
-	ship.setTexture(shipTexture);
+	//Sprite ship;
+	//ship.setTexture(shipTexture);
+
+	GoodGuy Billy(shipTexture, window);
 
 
 	// initial position of the ship will be approx middle of screen
-	float shipX = window.getSize().x / 2.0f;
-	float shipY = window.getSize().y / 2.0f;
-	ship.setPosition(shipX, shipY);
+	//float shipX = window.getSize().x / 2.0f;
+	//float shipY = window.getSize().y / 2.0f;
+	//ship.setPosition(shipX, shipY);
 
+	// my new code
+	MissileMgr missileMgr;
+	int i = 0;
+	BadGuyMgr badGuyMgr(shipTexture);
 
 	while (window.isOpen())
 	{
@@ -96,6 +92,10 @@ int main()
 				if (event.key.code == Keyboard::Space)
 				{
 					// handle space bar
+					// get ships current position
+					isMissileInFlight = true;
+					Vector2f curGoodGuyPos = Billy.getPosition();
+					missileMgr.addMissile(curGoodGuyPos, shipTexture);
 				}
 				
 			}
@@ -111,12 +111,26 @@ int main()
 		// will appear on top of background
 		window.draw(background);
 
-		moveShip(ship);
+		//moveShip(ship);
+		Billy.move();
 
 		// draw the ship on top of background 
 		// (the ship from previous frame was erased when we drew background)
-		window.draw(ship);
+		Billy.draw(window);
 
+		badGuyMgr.move(window);
+		badGuyMgr.draw(window);
+
+
+		if (missileMgr.areMissilesInFlight())
+		{
+			// ***code goes here to handle a missile in flight
+			// don't forget to turn the flag off when the missile goes off screen!
+
+			missileMgr.move();
+			missileMgr.draw(window);
+			
+		}
 
 		// end the current frame; this makes everything that we have 
 		// already "drawn" actually show up on the screen
