@@ -12,6 +12,8 @@ using namespace sf;
 #include "GoodGuy.h"
 #include "MissileMgr.h"
 #include "BadGuyMgr.h"
+#include "Hud.h"
+#include "Game.h"
 
 //============================================================
 // YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
@@ -50,31 +52,17 @@ int main()
 		cout << "Unable to load stars texture!" << endl;
 		exit(EXIT_FAILURE);
 	}
+	Texture badGuyTexture;
+	if (!badGuyTexture.loadFromFile("enemy.png"))
+	{
+		cout << "Unable to load badguy texture!" << endl;
+		exit(EXIT_FAILURE);
+	}
 
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
 
-	Sprite background;
-	background.setTexture(starsTexture);
-	// The texture file is 640x480, so scale it up a little to cover 800x600 window
-	background.setScale(1.5, 1.5);
-
-	// create sprite and texture it
-	//Sprite ship;
-	//ship.setTexture(shipTexture);
-
-	GoodGuy Billy(shipTexture, window);
-
-
-	// initial position of the ship will be approx middle of screen
-	//float shipX = window.getSize().x / 2.0f;
-	//float shipY = window.getSize().y / 2.0f;
-	//ship.setPosition(shipX, shipY);
-
-	// my new code
-	MissileMgr missileMgr;
-	int i = 0;
-	BadGuyMgr badGuyMgr(shipTexture);
+	Game game(shipTexture, badGuyTexture, starsTexture, window);
 
 	while (window.isOpen())
 	{
@@ -94,8 +82,8 @@ int main()
 					// handle space bar
 					// get ships current position
 					isMissileInFlight = true;
-					Vector2f curGoodGuyPos = Billy.getPosition();
-					missileMgr.addMissile(curGoodGuyPos, shipTexture);
+					Vector2f curGoodGuyPos = game.getGoodGuyPos();
+					game.addMissile(shipTexture);
 				}
 				
 			}
@@ -107,31 +95,9 @@ int main()
 		// render the next frame, and so on. All this happens ~ 60 times/second.
 		//===========================================================
 
-		// draw background first, so everything that's drawn later 
-		// will appear on top of background
-		window.draw(background);
-
-		//moveShip(ship);
-		Billy.move();
-
-		// draw the ship on top of background 
-		// (the ship from previous frame was erased when we drew background)
-		Billy.draw(window);
-
-		badGuyMgr.move(window);
-		badGuyMgr.draw(window);
-
-
-		if (missileMgr.areMissilesInFlight())
-		{
-			// ***code goes here to handle a missile in flight
-			// don't forget to turn the flag off when the missile goes off screen!
-
-			missileMgr.move();
-			missileMgr.draw(window);
-			
-		}
-
+		
+		game.drawGameElements(window);
+		
 		// end the current frame; this makes everything that we have 
 		// already "drawn" actually show up on the screen
 		window.display();

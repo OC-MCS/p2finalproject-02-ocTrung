@@ -8,12 +8,10 @@ class BadGuy
 {
 private:
 	Sprite badGuySprite;
-	bool isHit;
 public:
 	BadGuy(Texture &text, Vector2f pos)
 	{
 		badGuySprite.setTexture(text);
-		isHit = false;
 		badGuySprite.setPosition(pos);
 	}
 	void draw(RenderWindow& win)
@@ -39,5 +37,27 @@ public:
 	int getYPos()
 	{
 		return badGuySprite.getPosition().y;
+	}
+	FloatRect getEnemyBounds()
+	{
+		return badGuySprite.getGlobalBounds();
+	}
+	bool isHit(list<missile> missileList)
+	{
+		bool enemyHit = false;
+		FloatRect enemyBounds = badGuySprite.getGlobalBounds();
+
+		list<missile>::iterator iter;
+		for (iter = missileList.begin(); iter != missileList.end(); iter++)
+		{
+			FloatRect missileBounds = iter->getGlobalBounds();
+
+			if (missileBounds.intersects(enemyBounds))
+			{
+				enemyHit = true;
+			}
+
+		}
+		return enemyHit;
 	}
 };

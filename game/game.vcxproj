@@ -146,7 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Readme.txt" />
@@ -154,7 +154,9 @@
   <ItemGroup>
     <ClInclude Include="BadGuy.h" />
     <ClInclude Include="BadGuyMgr.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GoodGuy.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="MissileMgr.h" />
   </ItemGroup>

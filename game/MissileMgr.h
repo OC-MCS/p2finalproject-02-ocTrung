@@ -9,7 +9,7 @@ class MissileMgr
 {
 private:
 	// need a list of pointers to missiles
-	list<missile*> missileList;
+	list<missile> missileList;
 	bool missilesInFlight;
 
 public:
@@ -18,15 +18,14 @@ public:
 	}
 	void addMissile(Vector2f pos, Texture& misTexture)
 	{
-		missile* newMissile;
-		newMissile = new missile(misTexture, pos);
+		missile newMissile(misTexture, pos);
 		
 		missileList.push_back(newMissile);
 		missilesInFlight = true;
 	}
 	~MissileMgr()
 	{
-		list<missile*>::iterator iter;
+		list<missile>::iterator iter;
 		for (iter = missileList.begin(); iter != missileList.end();)
 		{
 			iter = missileList.erase(iter);
@@ -35,27 +34,27 @@ public:
 	}
 	void draw(RenderWindow &win)
 	{
-		list<missile*>::iterator iter;
+		list<missile>::iterator iter;
 		for (iter = missileList.begin(); iter != missileList.end(); iter++)
 		{
-			(*iter)->draw(win);
+			iter->draw(win);
 		}
 	}
 	void move()
 	{
-		list<missile*>::iterator iter;
+		list<missile>::iterator iter;
 		for (iter = missileList.begin(); iter != missileList.end(); iter++)
 		{
-			(*iter)->move();
+			iter->move();
 		}
 	}
 	bool areMissilesInFlight()
 	{
 		// check each missiles position to see if it is off the screen
-		list<missile*>::iterator iter;
-		for (iter = missileList.begin(); iter != missileList.end();)
+		list<missile>::iterator iter;
+		for (iter = missileList.begin(); iter != missileList.end(); )
 		{
-			if ((*iter)->getYPosition() < 30)
+			if (iter->isOffScreen())
 			{
 				iter = missileList.erase(iter);
 				cout << "missile erased" << endl;
@@ -65,11 +64,37 @@ public:
 				iter++;
 			}
 		}
-
 		if (missileList.empty())
 		{
 			missilesInFlight = false;
 		}
 		return missilesInFlight;
+	
 	}
+	list<missile> getList() 
+	{
+		return missileList;
+	}
+
+	//void isHit(list<BadGuy> badGuyList)
+	//{
+	//	// go through list of missiles to check for hits
+	//	list<missile>::iterator iter;
+	//	for (iter = missileList.begin(); iter != missileList.end();)
+	//	{
+	//		if (iter->isHit(badGuyList))
+	//		{
+	//			iter = missileList.erase(iter);
+	//			cout << "missile hit" << endl;
+	//		}
+	//		else
+	//		{
+	//			iter++;
+	//		}
+	//	}
+
+	//	// we need two lists, a list of bad guys and a list of missiles
+	//	// need to past a list of missiles, not a position of one missile
+	//}
+
 };
