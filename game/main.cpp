@@ -51,8 +51,6 @@ int main()
 				window.close();
 			else if (event.type == Event::MouseButtonReleased)
 			{
-				// maybe they just clicked on one of the settings "buttons"
-				// check for this and handle it.
 				Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
 				gameUI.handleMouseUp(mousePos);
 			}

@@ -26,6 +26,13 @@ public:
 		goodGuySprite.setPosition(shipX, shipY);
 
 	}
+
+	/*===================================
+name: move
+function: moves goodGuy according to user input
+parameters: none
+returns: none
+=====================================*/
 	void move()
 	{
 		const float DISTANCE = 5.0;
@@ -51,6 +58,12 @@ public:
 		return goodGuySprite.getPosition();
 	}
 
+	/*===================================
+name: isHit
+function: runs through list of missiles to check if any intersect with GoodGuy
+parameters: list of missiles
+returns: returns true if any missiles intersect with good guy
+=====================================*/
 	bool isHit(list<missile>& enemyMissileList)
 	{
 		bool goodGuyHit = false;

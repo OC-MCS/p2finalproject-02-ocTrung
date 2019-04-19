@@ -43,6 +43,11 @@ public:
 		enemyMissileMgr.setSpeed(4.0);
 	}
 
+/*===================================
+name: drawGameElements
+function: draw all elements and check for hits
+parameters: window of the game
+=====================================*/
 	bool drawGameElements(RenderWindow& win)
 	{
 		win.draw(background);
@@ -68,7 +73,6 @@ public:
 			// check hit here
 			if (goodGuy.isHit(enemyMissileMgr.getList()))
 			{
-				cout << "youve been hit" << endl;
 				lives--;
 				if (lives > 0)
 				{
@@ -106,22 +110,18 @@ public:
 		return goodGuy.getPosition();
 	}
 
+	// add missiles for GoodGuy
 	void addMissile()
 	{
 		Vector2f curGoodGuyPos = goodGuy.getPosition();
 		missileMgr.addMissile(curGoodGuyPos);
 	}
 
-	void setRunGame(bool run)
-	{
-		runGame = run;
-	}
-
-	bool isStartBtnPressed()
-	{
-		return runGame;
-	}
-
+/*===================================
+name: isLevelCleared
+function: checks if badGuyList is empty
+parameters: none
+=====================================*/
 	bool isLevelCleared()
 	{
 		bool levelCleared = false;
@@ -137,6 +137,11 @@ public:
 		return gameState;
 	}
 
+/*===================================
+name: setGameState
+function: allows changing of gamestate
+parameters: gamestate enum
+=====================================*/
 	void setGameState(GameState state)
 	{
 		gameState = state;

@@ -43,6 +43,11 @@ public:
 		lastShooter = 0;
 	}
 	
+/*===================================
+name: draw
+function: runs through list of badGuys and draws them
+parameters: window of the game
+=====================================*/
 	void draw(RenderWindow& win)
 	{
 		list<BadGuy>::iterator iter;
@@ -51,6 +56,12 @@ public:
 			iter->draw(win);
 		}
 	}
+
+	/*===================================
+name: move
+function: move all badGuys in the list (left and right and down when appropriate)
+parameters: window of the game
+=====================================*/
 	void move(RenderWindow& win)
 	{
 		int counter = 0;
@@ -100,6 +111,11 @@ public:
 		}
 	}
 
+	/*===================================
+name: isHit
+function: runs through each BadGuy on the list to check for hits
+parameters: list of missiles
+=====================================*/
 	bool isHit(list<missile>& missileList)
 	{
 		bool hit = false;
@@ -123,6 +139,7 @@ public:
 	{
 		return badGuyList;
 	}
+	// changes speed of BadGuys moving left and right
 	void setSpeed(int speed)
 	{
 		distance = speed;
@@ -137,6 +154,12 @@ public:
 		}
 		return empty;
 	}
+
+	/*===================================
+name: reset
+function: deletes all badguys from previous state; repopulates with new bad guys; changes speed 
+parameters: new speed 
+=====================================*/
 	void reset(int speed)
 	{
 		// delete all badguys from previous state
@@ -161,6 +184,12 @@ public:
 		distance = speed;
 	}
 
+	/*===================================
+name: didEnemyShoot
+function: randomly generates a number and assigns it to shooter if it is within bounds of number of enemies
+parameters: none
+returns: returns true of the number is within the number of badGuys that exists
+=====================================*/
 	bool didEnemyShoot()
 	{
 		bool enemyShot = false;
@@ -180,6 +209,12 @@ public:
 		return enemyShot;
 	}
 
+	/*===================================
+name: getShooterPos
+function: finds the BadGuy who shot 
+parameters: none
+returns: returns position of bad guy
+=====================================*/
 	Vector2f getShooterPos()
 	{
 		Vector2f shooterPos;
@@ -192,6 +227,12 @@ public:
 		return shooterPos;
 	}
 
+	/*===================================
+name: isAcrossLine
+function: checks if enemies have reached the ship
+parameters: none
+returns: returns true if enemies reach the ship
+=====================================*/
 	bool isAcrossLine()
 	{
 		bool acrossLine = false;

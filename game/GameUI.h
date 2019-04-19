@@ -24,6 +24,13 @@ public:
 		startScreen.setTitle("Aliens!");
 		gameLostScreen.setTitle("Game Over");
 	}
+
+	/*===================================
+name: handleMouseUp
+function: checks if menu button is pressed
+parameters: mouse position
+returns: none
+=====================================*/
 	void handleMouseUp(Vector2f mouse)
 	{
 		if (startScreen.isStartButtonPressed(mouse))
@@ -31,6 +38,13 @@ public:
 			startBtnPressed = true;
 		}
 	}
+
+	/*===================================
+name: draw
+function: checks gamestate and draws the appropriate things
+parameters: renderwindow
+returns: none
+=====================================*/
 	void draw(RenderWindow& window)
 	{
 		// new code using gamestates

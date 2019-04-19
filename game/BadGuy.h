@@ -42,6 +42,11 @@ public:
 	{
 		return badGuySprite.getGlobalBounds();
 	}
+/*===================================
+name: isHit
+function: runs through list of missiles and returns true if any intersect with BadGuy
+parameters: list of missiles
+=====================================*/
 	bool isHit(list<missile>& missileList)
 	{
 		bool enemyHit = false;
