@@ -38,13 +38,13 @@ public:
 		btnText.setFont(font);
 		btnText.setCharacterSize(20);
 		btnText.setPosition(380, 290);
-		btnText.setFillColor(Color::White);
+		btnText.setFillColor(Color::Black);
 
 		Vector2f startBtnPos(370, 285);
 		startBtn.setPosition(startBtnPos);
 		startBtn.setOutlineColor(Color::Transparent);
 		startBtn.setOutlineThickness(2);
-		startBtn.setSize(Vector2f(70, 50));
+		startBtn.setSize(Vector2f(125, 65));
 		startBtn.setFillColor(Color::Green);
 	}
 	void draw(RenderWindow& win)

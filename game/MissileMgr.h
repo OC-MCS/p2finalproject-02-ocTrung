@@ -30,15 +30,7 @@ public:
 		missileList.push_back(newMissile);
 		missilesInFlight = true;
 	}
-	~MissileMgr()
-	{
-		list<missile>::iterator iter;
-		for (iter = missileList.begin(); iter != missileList.end();)
-		{
-			iter = missileList.erase(iter);
-		}
-		cout << "Missile destructor ran" << endl;
-	}
+	
 	void draw(RenderWindow &win)
 	{
 		list<missile>::iterator iter;
