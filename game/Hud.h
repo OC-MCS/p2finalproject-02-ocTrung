@@ -19,6 +19,12 @@ public:
 
 	}
 
+	/*===================================
+name: draw
+function: creates all hud elements and draws them 
+parameters: renderwindow
+returns: none
+=====================================*/
 	void draw(RenderWindow& win)
 	{
 		Font font;

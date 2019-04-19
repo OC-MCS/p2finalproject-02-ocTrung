@@ -23,6 +23,8 @@ public:
 		gameWonScreen.setTitle("You Won!");
 		startScreen.setTitle("Aliens!");
 		gameLostScreen.setTitle("Game Over");
+		startScreen.setBtnText("I want to shoot something now");
+		gameLostScreen.setBtnText("RESTART?");
 	}
 
 	/*===================================
@@ -60,6 +62,8 @@ returns: none
 		else if (gamePtr->getGameState() == GAMEWON)
 		{
 			gameWonScreen.draw(window);
+			gamePtr->setLives(3);
+			gamePtr->setScore(0);
 		}
 		else if (gamePtr->getGameState() == LEVEL1 && !levelCleared)
 		{

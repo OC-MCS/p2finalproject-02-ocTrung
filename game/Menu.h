@@ -37,14 +37,14 @@ public:
 		btnText.setString("Start");
 		btnText.setFont(font);
 		btnText.setCharacterSize(20);
-		btnText.setPosition(365, 290);
+		btnText.setPosition(260, 300);
 		btnText.setFillColor(Color::Black);
 
-		Vector2f startBtnPos(350, 285);
+		Vector2f startBtnPos(250, 285);
 		startBtn.setPosition(startBtnPos);
 		startBtn.setOutlineColor(Color::Transparent);
 		startBtn.setOutlineThickness(2);
-		startBtn.setSize(Vector2f(110, 65));
+		startBtn.setSize(Vector2f(300, 65));
 		startBtn.setFillColor(Color::Magenta);	
 	}
 	void draw(RenderWindow& win)
@@ -54,6 +54,12 @@ public:
 		win.draw(startBtn);
 		win.draw(btnText);
 	}
+	/*===================================
+name: isStartButtonPressed
+function: checks if the startbutton contains the mouse
+parameters: none
+returns: returns true if the startbutton contains the mouse
+=====================================*/
 	bool isStartButtonPressed(Vector2f mouse)
 	{
 		bool isBtnPressed = false;

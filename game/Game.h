@@ -172,4 +172,12 @@ parameters: gamestate enum
 	{
 		return score;
 	}
+	void setLives(int newLives)
+	{
+		lives = newLives;
+	}
+	void setScore(int newScore)
+	{
+		score = newScore;
+	}
 };
