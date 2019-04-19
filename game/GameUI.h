@@ -8,6 +8,7 @@ class GameUI
 private:
 	Menu startScreen;
 	Menu gameWonScreen;
+	Menu gameLostScreen;
 	Game *gamePtr;
 	bool levelCleared;
 	bool startBtnPressed;
@@ -21,6 +22,7 @@ public:
 		gameWonScreen.setBtnText("RESTART?");
 		gameWonScreen.setTitle("You Won!");
 		startScreen.setTitle("Aliens!");
+		gameLostScreen.setTitle("Game Over");
 	}
 	void handleMouseUp(Vector2f mouse)
 	{
@@ -62,6 +64,10 @@ public:
 		{
 			gamePtr->setGameState(GAMEWON);
 			levelCleared = false; //resetting flag
+		}
+		else if (gamePtr->getGameState() == GAMELOST)
+		{
+			gameLostScreen.draw(window);
 		}
 	}
 

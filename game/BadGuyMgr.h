@@ -198,11 +198,10 @@ public:
 
 		list<BadGuy>::iterator it;
 		it = badGuyList.begin();
-		if (it->getYPos() > 500)
+		if (it->getYPos() > 300)
 		{
 			acrossLine = true;
 		}
-
 		return acrossLine;
 	}
 };

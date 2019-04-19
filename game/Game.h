@@ -85,6 +85,8 @@ public:
 			setGameState(gameState);
 
 			lives--;
+			if (lives == 0)
+				gameState = GAMELOST;
 		}
 
 		return isLevelCleared();

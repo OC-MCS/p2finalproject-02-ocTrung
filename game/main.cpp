@@ -9,15 +9,14 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf; 
 
-#include "GoodGuy.h"
 #include "MissileMgr.h"
-#include "BadGuyMgr.h"
-#include "Hud.h"
 #include "Game.h"
 #include "GameUI.h"
 
 //============================================================
-// YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
+// Name: Trung Nguyenvo
+// due date: 4/19/19
+// Assignment: Final Project
 //============================================================
 
 // note: a Sprite represents an image on screen. A sprite knows and remembers its own position
@@ -25,9 +24,6 @@ using namespace sf;
 // the current position of the ship. 
 // x is horizontal, y is vertical. 
 // 0,0 is in the UPPER LEFT of the screen, y increases DOWN the screen
-
-
-
 
 int main()
 {
