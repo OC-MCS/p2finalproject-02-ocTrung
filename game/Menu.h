@@ -31,21 +31,21 @@ public:
 		title.setString("Title");
 		title.setFont(font);
 		title.setCharacterSize(50);
-		title.setPosition(345, 80);
-		title.setFillColor(Color::White);
+		title.setPosition(330, 80);
+		title.setFillColor(Color::Green);
 
 		btnText.setString("Start");
 		btnText.setFont(font);
 		btnText.setCharacterSize(20);
-		btnText.setPosition(380, 290);
+		btnText.setPosition(365, 290);
 		btnText.setFillColor(Color::Black);
 
-		Vector2f startBtnPos(370, 285);
+		Vector2f startBtnPos(350, 285);
 		startBtn.setPosition(startBtnPos);
 		startBtn.setOutlineColor(Color::Transparent);
 		startBtn.setOutlineThickness(2);
-		startBtn.setSize(Vector2f(125, 65));
-		startBtn.setFillColor(Color::Green);
+		startBtn.setSize(Vector2f(110, 65));
+		startBtn.setFillColor(Color::Magenta);	
 	}
 	void draw(RenderWindow& win)
 	{
