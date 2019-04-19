@@ -40,7 +40,7 @@ public:
 		runGame = false;
 		gameState = STARTSCREEN;
 
-		enemyMissileMgr.setSpeed(10.0);
+		enemyMissileMgr.setSpeed(4.0);
 	}
 
 	bool drawGameElements(RenderWindow& win)
@@ -66,10 +66,19 @@ public:
 			enemyMissileMgr.move();
 			enemyMissileMgr.draw(win);
 			// check hit here
-			/*if (goodGuy.isHit(enemyMissileMgr.getList()))
+			if (goodGuy.isHit(enemyMissileMgr.getList()))
 			{
 				cout << "youve been hit" << endl;
-			}*/
+				lives--;
+				if (lives > 0)
+				{
+					setGameState(gameState);
+				}
+				else 
+				{
+					setGameState(GAMELOST);
+				}
+			}
 		}
 		if (missileMgr.areMissilesInFlight())
 		{
@@ -137,10 +146,17 @@ public:
 			int newSpeed = 4;
 			badGuyMgr.reset(newSpeed);
 		}
-		else if (gameState == LEVEL1 || gameState == STARTSCREEN)
+		else if (gameState == LEVEL1 || gameState == STARTSCREEN || gameState == GAMELOST)
 		{
 			int defaultSpeed = 3;
 			badGuyMgr.reset(defaultSpeed);
+
+			if (gameState == GAMELOST)
+			{
+				lives = 3;
+				score = 0;
+			}
+
 		}
 	}
 	int getLivesCounter()

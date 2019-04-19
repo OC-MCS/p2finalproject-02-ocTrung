@@ -44,7 +44,6 @@ public:
 		Text score(to_string(intScore), font, 20);
 		score.setPosition(500, 25);
 		win.draw(score);
-
 	}
 
 	void update(int lives, int score)

@@ -51,7 +51,7 @@ public:
 		return goodGuySprite.getPosition();
 	}
 
-	/*bool isHit(list<missile>& enemyMissileList)
+	bool isHit(list<missile>& enemyMissileList)
 	{
 		bool goodGuyHit = false;
 		FloatRect goodGuyBounds = goodGuySprite.getGlobalBounds();
@@ -72,6 +72,6 @@ public:
 			}
 		}
 		return goodGuyHit;
-	}*/
+	}
 
 };

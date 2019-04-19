@@ -34,7 +34,7 @@ public:
 	void draw(RenderWindow& window)
 	{
 		// new code using gamestates
-		if (startBtnPressed && (gamePtr->getGameState() == STARTSCREEN || gamePtr->getGameState() == GAMEWON))
+		if (startBtnPressed && (gamePtr->getGameState() == STARTSCREEN || gamePtr->getGameState() == GAMEWON || gamePtr->getGameState() == GAMELOST))
 		{
 			gamePtr->setGameState(LEVEL1);
 			startBtnPressed = false; // resetting flag
