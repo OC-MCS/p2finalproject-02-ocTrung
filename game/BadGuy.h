@@ -42,21 +42,25 @@ public:
 	{
 		return badGuySprite.getGlobalBounds();
 	}
-	bool isHit(list<missile> missileList)
+	bool isHit(list<missile>& missileList)
 	{
 		bool enemyHit = false;
 		FloatRect enemyBounds = badGuySprite.getGlobalBounds();
 
 		list<missile>::iterator iter;
-		for (iter = missileList.begin(); iter != missileList.end(); iter++)
+		for (iter = missileList.begin(); iter != missileList.end();)
 		{
 			FloatRect missileBounds = iter->getGlobalBounds();
 
 			if (missileBounds.intersects(enemyBounds))
 			{
 				enemyHit = true;
+				iter = missileList.erase(iter);
 			}
-
+			else
+			{
+				iter++;
+			}
 		}
 		return enemyHit;
 	}

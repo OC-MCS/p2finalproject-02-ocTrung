@@ -6,7 +6,7 @@ class missile
 {
 private:
 	Sprite missileSprite;
-	float Distance;
+	float distance;
 	bool isMissileInFlight;
 
 public:
@@ -14,7 +14,7 @@ public:
 	{
 		missileSprite.setTexture(misTexture);
 		missileSprite.setPosition(GoodGuyPos);
-		Distance = -10.0;
+		distance = -10.0;
 		isMissileInFlight = true;
 	}
 	void draw(RenderWindow& window)
@@ -23,13 +23,13 @@ public:
 	}
 	void move()
 	{
-		missileSprite.move(0, Distance);
+		missileSprite.move(0, distance);
 	}
 	bool isOffScreen()
 	{
 		bool offScreen = false;
 
-		if (missileSprite.getPosition().y < 0)
+		if (missileSprite.getPosition().y < 0 || missileSprite.getPosition().y > 800)
 		{
 			offScreen = true;
 		}
@@ -44,23 +44,9 @@ public:
 	{
 		return missileSprite.getGlobalBounds();
 	}
-	/*bool isHit(list<BadGuy> badGuyList)
+	void setSpeedandDirection(float speed)
 	{
-		bool enemyHit = false;
-		FloatRect missileBounds = missileSprite.getGlobalBounds();
-
-		list<BadGuy>::iterator iter;
-		for (iter = badGuyList.begin(); iter != badGuyList.end();iter++ )
-		{
-			FloatRect enemyBounds = iter->getEnemyBounds();
-
-			if (missileBounds.intersects(enemyBounds))
-			{
-				enemyHit = true;
-			}
-		}
-		return enemyHit;
-	}*/
-
+		distance = speed;
+	}
 
 };

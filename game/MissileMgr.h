@@ -8,18 +8,25 @@ using namespace std;
 class MissileMgr
 {
 private:
-	// need a list of pointers to missiles
 	list<missile> missileList;
 	bool missilesInFlight;
+	Texture missileTexture;
+	float speed;
 
 public:
 	MissileMgr()
 	{
+		if (!missileTexture.loadFromFile("missile.png"))
+		{
+			cout << "Unable to load missile texture!" << endl;
+			exit(EXIT_FAILURE);
+		}
+		speed = -10.0;
 	}
-	void addMissile(Vector2f pos, Texture& misTexture)
+	void addMissile(Vector2f pos)
 	{
-		missile newMissile(misTexture, pos);
-		
+		missile newMissile(missileTexture, pos);
+		newMissile.setSpeedandDirection(speed);
 		missileList.push_back(newMissile);
 		missilesInFlight = true;
 	}
@@ -57,7 +64,6 @@ public:
 			if (iter->isOffScreen())
 			{
 				iter = missileList.erase(iter);
-				cout << "missile erased" << endl;
 			}
 			else
 			{
@@ -71,30 +77,12 @@ public:
 		return missilesInFlight;
 	
 	}
-	list<missile> getList() 
+	list<missile>& getList() 
 	{
 		return missileList;
 	}
-
-	//void isHit(list<BadGuy> badGuyList)
-	//{
-	//	// go through list of missiles to check for hits
-	//	list<missile>::iterator iter;
-	//	for (iter = missileList.begin(); iter != missileList.end();)
-	//	{
-	//		if (iter->isHit(badGuyList))
-	//		{
-	//			iter = missileList.erase(iter);
-	//			cout << "missile hit" << endl;
-	//		}
-	//		else
-	//		{
-	//			iter++;
-	//		}
-	//	}
-
-	//	// we need two lists, a list of bad guys and a list of missiles
-	//	// need to past a list of missiles, not a position of one missile
-	//}
-
+	void setSpeed(int speedInput)
+	{
+		speed = speedInput;
+	}
 };

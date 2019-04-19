@@ -14,6 +14,7 @@ using namespace sf;
 #include "BadGuyMgr.h"
 #include "Hud.h"
 #include "Game.h"
+#include "GameUI.h"
 
 //============================================================
 // YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
@@ -38,31 +39,8 @@ int main()
 	// Limit the framerate to 60 frames per second
 	window.setFramerateLimit(60);
 
-	// load textures from file into memory. This doesn't display anything yet.
-	// Notice we do this *before* going into animation loop.
-	Texture shipTexture;
-	if (!shipTexture.loadFromFile("ship.png"))
-	{
-		cout << "Unable to load ship texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
-	Texture starsTexture;
-	if (!starsTexture.loadFromFile("stars.jpg"))
-	{
-		cout << "Unable to load stars texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
-	Texture badGuyTexture;
-	if (!badGuyTexture.loadFromFile("enemy.png"))
-	{
-		cout << "Unable to load badguy texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
-
-	// A sprite is a thing we can draw and manipulate on the screen.
-	// We have to give it a "texture" to specify what it looks like
-
-	Game game(shipTexture, badGuyTexture, starsTexture, window);
+	Game game(window);
+	GameUI gameUI(&game, window);
 
 	while (window.isOpen())
 	{
@@ -75,6 +53,13 @@ int main()
 			// "close requested" event: we close the window
 			if (event.type == Event::Closed)
 				window.close();
+			else if (event.type == Event::MouseButtonReleased)
+			{
+				// maybe they just clicked on one of the settings "buttons"
+				// check for this and handle it.
+				Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
+				gameUI.handleMouseUp(mousePos);
+			}
 			else if (event.type == Event::KeyPressed)
 			{
 				if (event.key.code == Keyboard::Space)
@@ -83,7 +68,7 @@ int main()
 					// get ships current position
 					isMissileInFlight = true;
 					Vector2f curGoodGuyPos = game.getGoodGuyPos();
-					game.addMissile(shipTexture);
+					game.addMissile();
 				}
 				
 			}
@@ -94,9 +79,8 @@ int main()
 		// code to produce ONE frame of the animation. The next iteration of the loop will
 		// render the next frame, and so on. All this happens ~ 60 times/second.
 		//===========================================================
-
-		
-		game.drawGameElements(window);
+	
+		gameUI.draw(window);
 		
 		// end the current frame; this makes everything that we have 
 		// already "drawn" actually show up on the screen

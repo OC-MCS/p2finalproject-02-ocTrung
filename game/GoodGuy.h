@@ -8,15 +8,17 @@ class GoodGuy
 {
 private:
 	Sprite goodGuySprite;
-	bool isHit;
-	int lives;
+	Texture shipTexture;
 
 public:
-	GoodGuy(Texture &goodGuyTexture, RenderWindow &window)
+	GoodGuy(RenderWindow &window)
 	{
-		goodGuySprite.setTexture(goodGuyTexture);
-		isHit = false;
-		lives = 3;
+		if (!shipTexture.loadFromFile("ship.png"))
+		{
+			cout << "Unable to load ship texture!" << endl;
+			exit(EXIT_FAILURE);
+		}
+		goodGuySprite.setTexture(shipTexture);
 
 		// set initial position
 		float shipX = window.getSize().x * 0.75f;
@@ -48,5 +50,28 @@ public:
 	{
 		return goodGuySprite.getPosition();
 	}
-	
+
+	/*bool isHit(list<missile>& enemyMissileList)
+	{
+		bool goodGuyHit = false;
+		FloatRect goodGuyBounds = goodGuySprite.getGlobalBounds();
+
+		list<missile>::iterator iter;
+		for (iter = enemyMissileList.begin(); iter != enemyMissileList.end();)
+		{
+			FloatRect missileBounds = iter->getGlobalBounds();
+
+			if (missileBounds.intersects(goodGuyBounds))
+			{
+				goodGuyHit = true;
+				iter = enemyMissileList.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
+		}
+		return goodGuyHit;
+	}*/
+
 };

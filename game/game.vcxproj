@@ -155,10 +155,12 @@
     <ClInclude Include="BadGuy.h" />
     <ClInclude Include="BadGuyMgr.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="GoodGuy.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="MissileMgr.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

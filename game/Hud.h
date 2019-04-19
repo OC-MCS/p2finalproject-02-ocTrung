@@ -10,26 +10,13 @@ void die(string msg);
 class Hud
 {
 private:
-	/*Text lives;
-	Text score;
-	RectangleShape gameArea;
-	Text livesTitle;*/
-	//Text scoreTitle;
 	int intLives;
 	int intScore;
 
 public:
 	Hud(RenderWindow& win)
 	{
-	/*	Vector2f gameAreaPos(0, 0);
-		gameArea.setPosition(gameAreaPos);
-		gameArea.setOutlineColor(Color::White);
-		gameArea.setOutlineThickness(2);
-		gameArea.setSize(Vector2f(800, 600));
-		gameArea.setFillColor(Color::Transparent);*/
 
-		intLives = 3;
-		intScore = 0;
 	}
 
 	void draw(RenderWindow& win)
@@ -60,16 +47,14 @@ public:
 
 	}
 
-	void subtractLife()
+	void update(int lives, int score)
 	{
-		intLives--;
-	}
-
-	void addToScore()
-	{
-		intScore++;
+		intLives = lives;
+		intScore = score;
 	}
 };
+
+
 
 void die(string msg)
 {
